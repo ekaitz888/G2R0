@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2020 a las 11:18:52
+-- Tiempo de generación: 17-09-2020 a las 11:46:32
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `g2r0`
 --
+CREATE DATABASE IF NOT EXISTS `g2r0` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `g2r0`;
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AlarmaMod` (IN `pID_Salas` INT(3), IN `pActivado` VARCHAR(40))  NO SQL
+UPDATE alarma SET activado=pActivado WHERE alarma.ID_Sala=pID_Salas$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calefacciónMod` (IN `pID_Salas` INT(3), IN `pActivado` VARCHAR(40))  NO SQL
+UPDATE calefaccion SET calefaccion.Activado=pActivado WHERE calefaccion.ID_Sala=pID_Salas$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAll` ()  NO SQL
+SELECT * FROM salas INNER JOIN calefaccion ON salas.ID_Sala=calefaccion.ID_Sala INNER JOIN alarma ON salas.ID_Sala=alarma.ID_Sala$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
