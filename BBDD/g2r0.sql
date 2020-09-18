@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2020 a las 13:43:21
+-- Tiempo de generación: 18-09-2020 a las 11:21:20
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -27,11 +27,11 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AlarmaMod` (IN `pID_Salas` INT(3), IN `pActivado` VARCHAR(40))  NO SQL
-UPDATE alarma SET activado=pActivado WHERE alarma.ID_Sala=pID_Salas$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AlarmaMod` (IN `pID_Salas` INT(3))  NO SQL
+insert INTO alarma (ID_Sala, fechaMod) VALUES (pID_Sala, NOW())$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `calefacciónMod` (IN `pID_Salas` INT(3), IN `pActivado` VARCHAR(40))  NO SQL
-UPDATE calefaccion SET calefaccion.Activado=pActivado WHERE calefaccion.ID_Sala=pID_Salas$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calefacciónMod` (IN `pID_Salas` INT(3))  NO SQL
+INSERT INTO calefaccion (ID_Sala, fechaMod) VALUES (pID_Sala, NOW())$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAll` ()  NO SQL
 SELECT * FROM salas INNER JOIN calefaccion ON salas.ID_Sala=calefaccion.ID_Sala INNER JOIN alarma ON salas.ID_Sala=alarma.ID_Sala$$
@@ -45,52 +45,10 @@ DELIMITER ;
 --
 
 CREATE TABLE `alarma` (
+  `ID_Alarma` int(11) NOT NULL,
   `ID_Sala` int(3) UNSIGNED NOT NULL,
-  `ID_Alarma` int(10) UNSIGNED NOT NULL,
-  `Activado` enum('Activado','No activado','No hay datos','') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No hay datos'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Alarmas en el centro';
-
---
--- Volcado de datos para la tabla `alarma`
---
-
-INSERT INTO `alarma` (`ID_Sala`, `ID_Alarma`, `Activado`) VALUES
-(1, 1, 'No hay datos'),
-(2, 2, 'No hay datos'),
-(3, 3, 'No hay datos'),
-(4, 4, 'No hay datos'),
-(5, 5, 'No hay datos'),
-(6, 6, 'No hay datos'),
-(7, 7, 'No hay datos'),
-(8, 8, 'No hay datos'),
-(9, 9, 'No hay datos'),
-(10, 10, 'No hay datos'),
-(11, 11, 'No hay datos'),
-(12, 12, 'No hay datos'),
-(13, 13, 'No hay datos'),
-(14, 14, 'No hay datos'),
-(15, 15, 'No hay datos'),
-(16, 16, 'No hay datos'),
-(17, 17, 'No hay datos'),
-(18, 18, 'No hay datos'),
-(19, 19, 'No hay datos'),
-(20, 20, 'No hay datos'),
-(21, 21, 'No hay datos'),
-(22, 22, 'No hay datos'),
-(23, 23, 'No hay datos'),
-(24, 24, 'No hay datos'),
-(25, 25, 'No hay datos'),
-(26, 26, 'No hay datos'),
-(27, 27, 'No hay datos'),
-(28, 28, 'No hay datos'),
-(29, 29, 'No hay datos'),
-(30, 30, 'No hay datos'),
-(31, 31, 'No hay datos'),
-(32, 32, 'No hay datos'),
-(33, 33, 'No hay datos'),
-(34, 34, 'No hay datos'),
-(35, 35, 'No hay datos'),
-(44, 36, 'No hay datos');
+  `fechaMod` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -99,52 +57,10 @@ INSERT INTO `alarma` (`ID_Sala`, `ID_Alarma`, `Activado`) VALUES
 --
 
 CREATE TABLE `calefaccion` (
+  `ID_Calefaccion` int(11) NOT NULL,
   `ID_Sala` int(3) UNSIGNED NOT NULL,
-  `ID_Calefaccion` int(11) UNSIGNED NOT NULL,
-  `Activado` enum('Activado','No activado','No hay datos') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No hay datos'
+  `fechaMod` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `calefaccion`
---
-
-INSERT INTO `calefaccion` (`ID_Sala`, `ID_Calefaccion`, `Activado`) VALUES
-(1, 1, 'No hay datos'),
-(2, 2, 'No hay datos'),
-(3, 3, 'No hay datos'),
-(4, 4, 'No hay datos'),
-(5, 5, 'No hay datos'),
-(6, 6, 'No hay datos'),
-(7, 7, 'No hay datos'),
-(8, 8, 'No hay datos'),
-(9, 9, 'No hay datos'),
-(10, 10, 'No hay datos'),
-(11, 12, 'No hay datos'),
-(12, 13, 'No hay datos'),
-(13, 14, 'No hay datos'),
-(14, 15, 'No hay datos'),
-(15, 16, 'No hay datos'),
-(16, 17, 'No hay datos'),
-(17, 18, 'No hay datos'),
-(18, 19, 'No hay datos'),
-(19, 20, 'No hay datos'),
-(20, 21, 'No hay datos'),
-(21, 22, 'No hay datos'),
-(22, 23, 'No hay datos'),
-(23, 24, 'No hay datos'),
-(24, 25, 'No hay datos'),
-(25, 26, 'No hay datos'),
-(26, 27, 'No hay datos'),
-(27, 28, 'No hay datos'),
-(28, 29, 'No hay datos'),
-(29, 30, 'No hay datos'),
-(30, 31, 'No hay datos'),
-(31, 32, 'No hay datos'),
-(32, 33, 'No hay datos'),
-(33, 34, 'No hay datos'),
-(34, 35, 'No hay datos'),
-(35, 36, 'No hay datos'),
-(44, 37, 'No hay datos');
 
 -- --------------------------------------------------------
 
@@ -209,14 +125,14 @@ INSERT INTO `salas` (`ID_Sala`, `SalaNum`, `Piso`) VALUES
 --
 ALTER TABLE `alarma`
   ADD PRIMARY KEY (`ID_Alarma`),
-  ADD UNIQUE KEY `ID_Sala` (`ID_Sala`);
+  ADD UNIQUE KEY `ID_Sala_2` (`ID_Sala`);
 
 --
 -- Indices de la tabla `calefaccion`
 --
 ALTER TABLE `calefaccion`
   ADD PRIMARY KEY (`ID_Calefaccion`),
-  ADD UNIQUE KEY `ID_Sala` (`ID_Sala`);
+  ADD KEY `ID_Sala` (`ID_Sala`);
 
 --
 -- Indices de la tabla `salas`
@@ -233,13 +149,13 @@ ALTER TABLE `salas`
 -- AUTO_INCREMENT de la tabla `alarma`
 --
 ALTER TABLE `alarma`
-  MODIFY `ID_Alarma` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ID_Alarma` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `calefaccion`
 --
 ALTER TABLE `calefaccion`
-  MODIFY `ID_Calefaccion` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID_Calefaccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `salas`
