@@ -17,17 +17,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import javax.swing.Icon;
 
 public class reto_0 implements ActionListener {
 
 	private JFrame frame;
-	private JLabel Plano;
-	private JLabel Label_1;
 	private JRadioButton piso0;
 	private JRadioButton piso1;
 	private JRadioButton piso2;
 	private ButtonGroup Pisos;
 	private ImageIcon imagen;
+	private JButton btn0_1;
+	private JButton btn0_2;
+	private JButton btn0_3;
+	private JButton btn0_4;
+	private JButton btn0_5;
+	private JButton btn0_6;
+	private JButton btn0_7;
+	private JButton btn0_8;
+	private JButton btn0_9;
+	private JButton btn0_10;
+	private JButton btn0_11;
+	private JButton btn0_12;
+	private JLabel Plano;
+	private JPanel panel_0;
 
 	/**
 	 * Launch the application.
@@ -70,143 +84,115 @@ public class reto_0 implements ActionListener {
 		comboBox.setBounds(31, 24, 420, 57);
 		frame.getContentPane().add(comboBox);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(641, 13, 274, 707);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		panel_0 = new JPanel();
+		panel_0.setBackground(Color.WHITE);
+		panel_0.setBounds(128, 118, 747, 533);
+		frame.getContentPane().add(panel_0);
+		panel_0.setLayout(null);
+		
+		btn0_1 = new JButton("1");
+		btn0_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_1.setBackground(Color.GREEN);
+		btn0_1.setBounds(132, 55, 76, 77);
+		panel_0.add(btn0_1);
+		
+		btn0_2 = new JButton("2");
+		btn0_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_2.setBackground(Color.RED);
+		btn0_2.setBounds(247, 55, 65, 76);
+		panel_0.add(btn0_2);
+		
+		btn0_3 = new JButton("3");
+		btn0_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_3.setBackground(Color.GREEN);
+		btn0_3.setBounds(143, 207, 65, 50);
+		panel_0.add(btn0_3);
+		
+		btn0_4 = new JButton("4");
+		btn0_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_4.setBackground(Color.GREEN);
+		btn0_4.setBounds(247, 226, 65, 77);
+		panel_0.add(btn0_4);
+		
+		btn0_5 = new JButton("5");
+		btn0_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_5.setBackground(Color.GREEN);
+		btn0_5.setBounds(485, 44, 130, 33);
+		panel_0.add(btn0_5);
+		
+		btn0_6 = new JButton("6");
+		btn0_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_6.setBackground(Color.RED);
+		btn0_6.setBounds(485, 104, 130, 33);
+		panel_0.add(btn0_6);
+		
+		btn0_7 = new JButton("7");
+		btn0_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_7.setBackground(Color.GREEN);
+		btn0_7.setBounds(342, 35, 58, 50);
+		panel_0.add(btn0_7);
+		
+		btn0_8 = new JButton("8");
+		btn0_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_8.setBackground(Color.RED);
+		btn0_8.setBounds(342, 100, 58, 41);
+		panel_0.add(btn0_8);
+		
+		btn0_9 = new JButton("9");
+		btn0_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_9.setBackground(Color.GREEN);
+		btn0_9.setBounds(346, 328, 58, 44);
+		panel_0.add(btn0_9);
+		
+		btn0_10 = new JButton("10");
+		btn0_10.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_10.setBackground(Color.RED);
+		btn0_10.setBounds(341, 383, 58, 50);
+		panel_0.add(btn0_10);
+		
+		btn0_11 = new JButton("11");
+		btn0_11.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_11.setBackground(Color.GREEN);
+		btn0_11.setBounds(479, 328, 65, 44);
+		panel_0.add(btn0_11);
+		
+		btn0_12 = new JButton("12");
+		btn0_12.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn0_12.setBackground(Color.GREEN);
+		btn0_12.setBounds(485, 389, 65, 44);
+		panel_0.add(btn0_12);
 		
 		imagen = new ImageIcon(getClass().getResource("Planta_Baja.png"));
 		Plano = new JLabel(imagen);
-		Plano.setBounds(50, 91, 560, 597);
-		Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
-		frame.getContentPane().add(Plano);
+		Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(700, 500, Image.SCALE_SMOOTH)));
+		Plano.setBounds(10, 10, 727, 486);
+		panel_0.add(Plano);
 		
-		Label_1 = new JLabel("1.");
-		Label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_1.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-		Label_1.setBounds(12, 13, 56, 16);
-		panel.add(Label_1);
+
 		
-		JLabel Label_2 = new JLabel("2.");
-		Label_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_2.setBounds(12, 71, 56, 16);
-		panel.add(Label_2);
 		
-		JLabel Label_3 = new JLabel("3.");
-		Label_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_3.setBounds(12, 129, 56, 16);
-		panel.add(Label_3);
 		
-		JLabel Label_4 = new JLabel("4.");
-		Label_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_4.setBounds(12, 190, 56, 16);
-		panel.add(Label_4);
 		
-		JLabel Label_5 = new JLabel("5.");
-		Label_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_5.setBounds(12, 251, 56, 16);
-		panel.add(Label_5);
 		
-		JLabel Label_6 = new JLabel("6.");
-		Label_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_6.setBounds(12, 313, 56, 16);
-		panel.add(Label_6);
 		
-		JLabel Label_7 = new JLabel("7.");
-		Label_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_7.setBounds(12, 370, 56, 16);
-		panel.add(Label_7);
 		
-		JLabel Label_8 = new JLabel("8.");
-		Label_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_8.setBounds(12, 434, 56, 16);
-		panel.add(Label_8);
-		
-		JLabel Label_9 = new JLabel("9.");
-		Label_9.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_9.setBounds(12, 494, 56, 16);
-		panel.add(Label_9);
-		
-		JLabel Label_10 = new JLabel("10.");
-		Label_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_10.setBounds(12, 555, 56, 16);
-		panel.add(Label_10);
-		
-		JLabel Label_11 = new JLabel("11.");
-		Label_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_11.setBounds(12, 620, 56, 16);
-		panel.add(Label_11);
-		
-		JLabel Label_12 = new JLabel("12.");
-		Label_12.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Label_12.setBounds(12, 678, 56, 16);
-		panel.add(Label_12);
-		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(53, 4, 189, 38);
-		panel.add(comboBox_1);
-		
-		JComboBox<String> comboBox_1_1 = new JComboBox<String>();
-		comboBox_1_1.setBounds(53, 62, 189, 38);
-		panel.add(comboBox_1_1);
-		
-		JComboBox<String> comboBox_1_2 = new JComboBox<String>();
-		comboBox_1_2.setBounds(53, 120, 189, 38);
-		panel.add(comboBox_1_2);
-		
-		JComboBox<String> comboBox_1_3 = new JComboBox<String>();
-		comboBox_1_3.setBounds(53, 181, 189, 38);
-		panel.add(comboBox_1_3);
-		
-		JComboBox<String> comboBox_1_4 = new JComboBox<String>();
-		comboBox_1_4.setBounds(53, 242, 189, 38);
-		panel.add(comboBox_1_4);
-		
-		JComboBox<String> comboBox_1_5 = new JComboBox<String>();
-		comboBox_1_5.setBounds(53, 304, 189, 38);
-		panel.add(comboBox_1_5);
-		
-		JComboBox<String> comboBox_1_6 = new JComboBox<String>();
-		comboBox_1_6.setBounds(53, 361, 189, 38);
-		panel.add(comboBox_1_6);
-		
-		JComboBox<String> comboBox_1_7 = new JComboBox<String>();
-		comboBox_1_7.setBounds(53, 425, 189, 38);
-		panel.add(comboBox_1_7);
-		
-		JComboBox<String> comboBox_1_8 = new JComboBox<String>();
-		comboBox_1_8.setBounds(53, 485, 189, 38);
-		panel.add(comboBox_1_8);
-		
-		JComboBox<String> comboBox_1_9 = new JComboBox<String>();
-		comboBox_1_9.setBounds(53, 546, 189, 38);
-		panel.add(comboBox_1_9);
-		
-		JComboBox<String> comboBox_1_9_1 = new JComboBox<String>();
-		comboBox_1_9_1.setBounds(53, 611, 189, 38);
-		panel.add(comboBox_1_9_1);
-		
-		JComboBox<String> comboBox_1_9_2 = new JComboBox<String>();
-		comboBox_1_9_2.setBounds(53, 669, 189, 38);
-		panel.add(comboBox_1_9_2);
 		
 		piso0 = new JRadioButton("Planta Baja");
 		piso0.setSelected(true);
 		piso0.setBackground(Color.WHITE);
-		piso0.setBounds(477, 24, 103, 21);
+		piso0.setBounds(769, 24, 103, 21);
 		frame.getContentPane().add(piso0);
 		piso0.addActionListener( this);
 		
 		piso1 = new JRadioButton("Planta 1");
 		piso1.setBackground(Color.WHITE);
-		piso1.setBounds(477, 46, 103, 21);
+		piso1.setBounds(769, 60, 103, 21);
 		frame.getContentPane().add(piso1);
 		piso1.addActionListener( this);
 		
 		piso2 = new JRadioButton("Planta 2");
 		piso2.setBackground(Color.WHITE);
-		piso2.setBounds(477, 69, 103, 21);
+		piso2.setBounds(769, 96, 103, 21);
 		frame.getContentPane().add(piso2);
 		piso2.addActionListener(this);
 		
@@ -214,15 +200,27 @@ public class reto_0 implements ActionListener {
 		Pisos.add(piso0);
 		Pisos.add(piso1);
 		Pisos.add(piso2);
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(piso0.isSelected()) {
+			panel_0.setVisible(true);
 			imagen = new ImageIcon(getClass().getResource("Planta_Baja.png"));
 			Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
 		}else if(piso1.isSelected()) {
+			panel_0.setVisible(false);
 			imagen = new ImageIcon(getClass().getResource("piso1.png"));
 			Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
 		}else {
