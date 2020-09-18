@@ -21,8 +21,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.JRadioButton;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class reto_0 implements ActionListener {
 
@@ -240,13 +239,16 @@ public class reto_0 implements ActionListener {
 	
 	public void insertAlarma() {
 		
-	
+		
+			
+		
 			Connection konexioa = DriverManager.getConnection("jdbc:mysql://localhost/g2r0", "root", "");
 			
 			
 
 			Statement st = konexioa.createStatement();
-			ResultSet rsj = st.executeUpdate("CALL alarmaMod(`"+activado+"`)");
+			ResultSet rsj = st.executeQuery("Call AlarmaMod()");
+			
 			
 
 			// ResultSet itxi
