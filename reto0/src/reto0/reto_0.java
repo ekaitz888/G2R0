@@ -3,19 +3,31 @@ package reto0;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.SpringLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class reto_0 {
+import javax.swing.JRadioButton;
+
+public class reto_0 implements ActionListener {
 
 	private JFrame frame;
+	private JLabel Plano;
 	private JLabel Label_1;
+	private JRadioButton piso0;
+	private JRadioButton piso1;
+	private JRadioButton piso2;
+	private ButtonGroup Pisos;
+	private ImageIcon imagen;
 
 	/**
 	 * Launch the application.
@@ -50,9 +62,12 @@ public class reto_0 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setResizable(false);
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Calefaccion", "Alarma"}));
+		comboBox.setSelectedIndex(0);
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(170, 24, 272, 57);
+		comboBox.setBounds(31, 24, 420, 57);
 		frame.getContentPane().add(comboBox);
 		
 		JPanel panel = new JPanel();
@@ -60,6 +75,12 @@ public class reto_0 {
 		panel.setBounds(641, 13, 274, 707);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		imagen = new ImageIcon(getClass().getResource("Planta_Baja.png"));
+		Plano = new JLabel(imagen);
+		Plano.setBounds(50, 91, 560, 597);
+		Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
+		frame.getContentPane().add(Plano);
 		
 		Label_1 = new JLabel("1.");
 		Label_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -122,52 +143,91 @@ public class reto_0 {
 		Label_12.setBounds(12, 678, 56, 16);
 		panel.add(Label_12);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setBounds(53, 4, 189, 38);
 		panel.add(comboBox_1);
 		
-		JComboBox comboBox_1_1 = new JComboBox();
+		JComboBox<String> comboBox_1_1 = new JComboBox<String>();
 		comboBox_1_1.setBounds(53, 62, 189, 38);
 		panel.add(comboBox_1_1);
 		
-		JComboBox comboBox_1_2 = new JComboBox();
+		JComboBox<String> comboBox_1_2 = new JComboBox<String>();
 		comboBox_1_2.setBounds(53, 120, 189, 38);
 		panel.add(comboBox_1_2);
 		
-		JComboBox comboBox_1_3 = new JComboBox();
+		JComboBox<String> comboBox_1_3 = new JComboBox<String>();
 		comboBox_1_3.setBounds(53, 181, 189, 38);
 		panel.add(comboBox_1_3);
 		
-		JComboBox comboBox_1_4 = new JComboBox();
+		JComboBox<String> comboBox_1_4 = new JComboBox<String>();
 		comboBox_1_4.setBounds(53, 242, 189, 38);
 		panel.add(comboBox_1_4);
 		
-		JComboBox comboBox_1_5 = new JComboBox();
+		JComboBox<String> comboBox_1_5 = new JComboBox<String>();
 		comboBox_1_5.setBounds(53, 304, 189, 38);
 		panel.add(comboBox_1_5);
 		
-		JComboBox comboBox_1_6 = new JComboBox();
+		JComboBox<String> comboBox_1_6 = new JComboBox<String>();
 		comboBox_1_6.setBounds(53, 361, 189, 38);
 		panel.add(comboBox_1_6);
 		
-		JComboBox comboBox_1_7 = new JComboBox();
+		JComboBox<String> comboBox_1_7 = new JComboBox<String>();
 		comboBox_1_7.setBounds(53, 425, 189, 38);
 		panel.add(comboBox_1_7);
 		
-		JComboBox comboBox_1_8 = new JComboBox();
+		JComboBox<String> comboBox_1_8 = new JComboBox<String>();
 		comboBox_1_8.setBounds(53, 485, 189, 38);
 		panel.add(comboBox_1_8);
 		
-		JComboBox comboBox_1_9 = new JComboBox();
+		JComboBox<String> comboBox_1_9 = new JComboBox<String>();
 		comboBox_1_9.setBounds(53, 546, 189, 38);
 		panel.add(comboBox_1_9);
 		
-		JComboBox comboBox_1_9_1 = new JComboBox();
+		JComboBox<String> comboBox_1_9_1 = new JComboBox<String>();
 		comboBox_1_9_1.setBounds(53, 611, 189, 38);
 		panel.add(comboBox_1_9_1);
 		
-		JComboBox comboBox_1_9_2 = new JComboBox();
+		JComboBox<String> comboBox_1_9_2 = new JComboBox<String>();
 		comboBox_1_9_2.setBounds(53, 669, 189, 38);
 		panel.add(comboBox_1_9_2);
+		
+		piso0 = new JRadioButton("Planta Baja");
+		piso0.setSelected(true);
+		piso0.setBackground(Color.WHITE);
+		piso0.setBounds(477, 24, 103, 21);
+		frame.getContentPane().add(piso0);
+		piso0.addActionListener( this);
+		
+		piso1 = new JRadioButton("Planta 1");
+		piso1.setBackground(Color.WHITE);
+		piso1.setBounds(477, 46, 103, 21);
+		frame.getContentPane().add(piso1);
+		piso1.addActionListener( this);
+		
+		piso2 = new JRadioButton("Planta 2");
+		piso2.setBackground(Color.WHITE);
+		piso2.setBounds(477, 69, 103, 21);
+		frame.getContentPane().add(piso2);
+		piso2.addActionListener(this);
+		
+		Pisos = new ButtonGroup();
+		Pisos.add(piso0);
+		Pisos.add(piso1);
+		Pisos.add(piso2);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(piso0.isSelected()) {
+			imagen = new ImageIcon(getClass().getResource("Planta_Baja.png"));
+			Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
+		}else if(piso1.isSelected()) {
+			imagen = new ImageIcon(getClass().getResource("piso1.png"));
+			Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
+		}else {
+			imagen = new ImageIcon(getClass().getResource("piso2.png"));
+			Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
+		}
 	}
 }
