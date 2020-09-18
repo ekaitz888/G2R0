@@ -8,6 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -15,6 +16,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JRadioButton;
 
@@ -229,5 +235,47 @@ public class reto_0 implements ActionListener {
 			imagen = new ImageIcon(getClass().getResource("piso2.png"));
 			Plano.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(Plano.getWidth(), Plano.getHeight(), Image.SCALE_DEFAULT)));
 		}
+	}
+	
+	
+	public void insertAlarma() {
+		
+	
+			Connection konexioa = DriverManager.getConnection("jdbc:mysql://localhost/g2r0", "root", "");
+			
+			
+
+			Statement st = konexioa.createStatement();
+			ResultSet rsj = st.executeUpdate("CALL alarmaMod(`"+activado+"`)");
+			
+
+			// ResultSet itxi
+			rsj.close();
+			// Statement itxi kontsulta egin eta gero
+			st.close();
+			// konexioa itxi
+			konexioa.close();
+
+		
+
+		
+	}
+	
+	public void insertCalefaccion() {
+		
+		Connection konexioa = DriverManager.getConnection("jdbc:mysql://localhost/g2r0", "root", "");
+		
+		
+
+		Statement st = konexioa.createStatement();
+		ResultSet rsj = st.executeUpdate("CALL calefaccionMod()");
+		
+
+		// ResultSet itxi
+		rsj.close();
+		// Statement itxi kontsulta egin eta gero
+		st.close();
+		// konexioa itxi
+		konexioa.close();
 	}
 }
