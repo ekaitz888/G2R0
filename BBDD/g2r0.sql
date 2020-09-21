@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2020 a las 11:18:09
+-- Tiempo de generación: 21-09-2020 a las 12:35:16
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -27,11 +27,20 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AlarmaMod` (IN `pID_Salas` VARCHAR(7), IN `pActivado` VARCHAR(40))  NO SQL
-insert INTO alarma (ID_Sala, fechaMod, activado) VALUES (pID_Salas, NOW(),pActivado)$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alarmaInsert` (IN `pID_Salas` INT(7), IN `pActivado` INT(40))  NO SQL
+INSERT INTO alarma (ID_Sala, activado, fechaMod) VALUES (pID_Salas, pActivado, NOW())$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `calefacciónMod` (IN `pID_Salas` VARCHAR(7), IN `pActivado` VARCHAR(40))  NO SQL
-INSERT INTO calefaccion (ID_Sala, fechaMod, activado) VALUES (pID_Salas, NOW(), pActivado)$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alarmaUpdate` (IN `pID_Salas` VARCHAR(7), IN `pActivado` VARCHAR(40))  NO SQL
+UPDATE alarma SET activado=pActivado, fechaMod=NOW() WHERE ID_Sala=pID_Salas$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calefaccionInsert` (IN `pID_Salas` INT(7), IN `pActivado` INT(40))  NO SQL
+insert into calefaccion (ID_Sala, activado, fechaMod) VALUES (pID_Salas, pActivado, NOW())$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calefaccionUpdate` (IN `pID_Salas` INT(7), IN `pActivado` INT(40))  NO SQL
+UPDATE calefaccion SET activado=pActivado, fechaMod=NOW() WHERE ID_Sala=pID_Salas$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectAlarma` ()  NO SQL
+SELECT * FROM alarma$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAll` ()  NO SQL
 SELECT * FROM salas INNER JOIN calefaccion ON salas.ID_Sala=calefaccion.ID_Sala INNER JOIN alarma ON salas.ID_Sala=alarma.ID_Sala$$

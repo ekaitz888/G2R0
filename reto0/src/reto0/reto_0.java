@@ -79,7 +79,6 @@ public class reto_0 implements ActionListener {
 			for (int i=0; i<AR_Salas.size();i++) {
 				System.out.println(AR_Salas.get(i).getID_Sala()+" - "+AR_Salas.get(i).getSalaNum()+ " - "+AR_Salas.get(i).getPiso());
 			}
-			System.out.print("ENTRA");
 			// ResultSet itxi
 						rse.close();
 						// Statement itxi kontsulta egin eta gero
