@@ -10,15 +10,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import javax.swing.Icon;
 
 public class reto_0 implements ActionListener {
 
@@ -42,7 +46,9 @@ public class reto_0 implements ActionListener {
 	private JButton btn0_12;
 	private JLabel Plano;
 	private JPanel panel_0;
-
+	private ArrayList<sala> AR_Salas = new ArrayList<sala>();
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,6 +65,33 @@ public class reto_0 implements ActionListener {
 		});
 	}
 
+	public void cargarSalas() {
+		
+		try {
+			Connection konexioa = DriverManager.getConnection("jdbc:mysql://localhost/g2r0", "root", "");
+			Statement st = konexioa.createStatement();
+			ResultSet rse = st.executeQuery("call selectSala()");
+			while (rse.next()) {
+				sala objSala = new sala(rse.getObject("ID_Sala").toString(), rse.getObject("SalaNum").toString(), rse.getObject("Piso").toString());
+						AR_Salas.add(objSala);
+				
+			}
+			for (int i=0; i<AR_Salas.size();i++) {
+				System.out.println(AR_Salas.get(i).getID_Sala()+" - "+AR_Salas.get(i).getSalaNum()+ " - "+AR_Salas.get(i).getPiso());
+			}
+			System.out.print("ENTRA");
+			// ResultSet itxi
+						rse.close();
+						// Statement itxi kontsulta egin eta gero
+						st.close();
+						// konexioa itxi
+						konexioa.close();
+
+		}catch (SQLException sqle) {
+			
+		}
+	}
+	
 	/**
 	 * Create the application.
 	 */
@@ -176,7 +209,7 @@ public class reto_0 implements ActionListener {
 		
 		
 		
-		
+		cargarSalas();
 		piso0 = new JRadioButton("Planta Baja");
 		piso0.setSelected(true);
 		piso0.setBackground(Color.WHITE);
@@ -211,6 +244,8 @@ public class reto_0 implements ActionListener {
 		
 		
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-09-2020 a las 12:05:11
+-- Tiempo de generación: 21-09-2020 a las 11:18:09
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -28,13 +28,16 @@ DELIMITER $$
 -- Procedimientos
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `AlarmaMod` (IN `pID_Salas` VARCHAR(7), IN `pActivado` VARCHAR(40))  NO SQL
-insert INTO alarma (ID_Sala, fechaMod, activado) VALUES (pID_Sala, NOW(),pActivado)$$
+insert INTO alarma (ID_Sala, fechaMod, activado) VALUES (pID_Salas, NOW(),pActivado)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `calefacciónMod` (IN `pID_Salas` VARCHAR(7), IN `pActivado` VARCHAR(40))  NO SQL
-INSERT INTO calefaccion (ID_Sala, fechaMod, activado) VALUES (pID_Sala, NOW(), pActivado)$$
+INSERT INTO calefaccion (ID_Sala, fechaMod, activado) VALUES (pID_Salas, NOW(), pActivado)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAll` ()  NO SQL
 SELECT * FROM salas INNER JOIN calefaccion ON salas.ID_Sala=calefaccion.ID_Sala INNER JOIN alarma ON salas.ID_Sala=alarma.ID_Sala$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectSala` ()  NO SQL
+SELECT * FROM salas ORDER BY SalaNum$$
 
 DELIMITER ;
 
@@ -63,6 +66,13 @@ CREATE TABLE `calefaccion` (
   `fechaMod` date NOT NULL,
   `activado` varchar(40) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `calefaccion`
+--
+
+INSERT INTO `calefaccion` (`ID_Calefaccion`, `ID_Sala`, `fechaMod`, `activado`) VALUES
+(1, 'P1_1', '2020-09-18', 'ACTIVADO');
 
 -- --------------------------------------------------------
 
@@ -157,7 +167,7 @@ ALTER TABLE `alarma`
 -- AUTO_INCREMENT de la tabla `calefaccion`
 --
 ALTER TABLE `calefaccion`
-  MODIFY `ID_Calefaccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Calefaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
