@@ -247,7 +247,7 @@ public class reto_0 implements ActionListener {
 			
 
 			Statement st = konexioa.createStatement();
-			ResultSet rsj = st.executeQuery("Call AlarmaMod()");
+			ResultSet rsj = st.executeQuery("Call AlarmaMod(``)");
 			
 			
 
@@ -270,7 +270,7 @@ public class reto_0 implements ActionListener {
 		
 
 		Statement st = konexioa.createStatement();
-		ResultSet rsj = st.executeUpdate("CALL calefaccionMod()");
+		ResultSet rsj = st.executeQuery("CALL calefaccionMod()");
 		
 
 		// ResultSet itxi
