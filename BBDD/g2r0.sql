@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-09-2020 a las 12:35:16
+-- Tiempo de generación: 22-09-2020 a las 08:37:59
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -48,6 +48,12 @@ SELECT * FROM salas INNER JOIN calefaccion ON salas.ID_Sala=calefaccion.ID_Sala 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectSala` ()  NO SQL
 SELECT * FROM salas ORDER BY SalaNum$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectSalaAlarma` ()  NO SQL
+SELECT SalaNum, alarma.activado, Piso FROM salas JOIN alarma ON ID_Sala=alarma.ID_Sala$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectSalaCalefaccion` ()  NO SQL
+SELECT SalaNum, calefaccion.activado, Piso FROM salas JOIN calefaccion ON ID_Sala=calefaccion.ID_Sala$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -60,8 +66,50 @@ CREATE TABLE `alarma` (
   `ID_Alarma` int(11) NOT NULL,
   `ID_Sala` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `fechaMod` date NOT NULL,
-  `activado` varchar(40) COLLATE utf8_unicode_ci NOT NULL
+  `activado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `alarma`
+--
+
+INSERT INTO `alarma` (`ID_Alarma`, `ID_Sala`, `fechaMod`, `activado`) VALUES
+(1, 'P1_1', '2020-09-21', 0),
+(2, 'P1_2', '2020-09-21', 0),
+(3, 'P1_3', '2020-09-21', 0),
+(4, 'P1_4', '2020-09-21', 0),
+(5, 'P1_5', '2020-09-21', 0),
+(6, 'P1_6', '2020-09-21', 0),
+(7, 'P1_7', '2020-09-21', 0),
+(8, 'P1_8', '2020-09-21', 0),
+(9, 'P1_9', '2020-09-21', 0),
+(10, 'P1_10', '2020-09-21', 0),
+(11, 'P1_11', '2020-09-21', 0),
+(12, 'P1_12', '2020-09-21', 0),
+(13, 'P2_1', '2020-09-21', 0),
+(14, 'P2_2', '2020-09-21', 0),
+(15, 'P2_3', '2020-09-21', 0),
+(16, 'P2_4', '2020-09-21', 0),
+(17, 'P2_5', '2020-09-21', 0),
+(18, 'P2_6', '2020-09-21', 0),
+(19, 'P2_7', '2020-09-21', 0),
+(20, 'P2_8', '2020-09-21', 0),
+(21, 'P2_9', '2020-09-21', 0),
+(22, 'P2_10', '2020-09-21', 0),
+(23, 'P2_11', '2020-09-21', 0),
+(24, 'P2_12', '2020-09-21', 0),
+(25, 'P3_1', '2020-09-21', 0),
+(26, 'P3_2', '2020-09-21', 0),
+(27, 'P3_3', '2020-09-21', 0),
+(28, 'P3_4', '2020-09-21', 0),
+(29, 'P3_5', '2020-09-21', 0),
+(30, 'P3_6', '2020-09-21', 0),
+(31, 'P3_7', '2020-09-21', 0),
+(32, 'P3_8', '2020-09-21', 0),
+(33, 'P3_9', '2020-09-21', 0),
+(34, 'P3_10', '2020-09-21', 0),
+(35, 'P3_11', '2020-09-21', 0),
+(36, 'P3_12', '2020-09-21', 0);
 
 -- --------------------------------------------------------
 
@@ -73,7 +121,7 @@ CREATE TABLE `calefaccion` (
   `ID_Calefaccion` int(11) NOT NULL,
   `ID_Sala` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `fechaMod` date NOT NULL,
-  `activado` varchar(40) COLLATE utf8_unicode_ci NOT NULL
+  `activado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -81,7 +129,44 @@ CREATE TABLE `calefaccion` (
 --
 
 INSERT INTO `calefaccion` (`ID_Calefaccion`, `ID_Sala`, `fechaMod`, `activado`) VALUES
-(1, 'P1_1', '2020-09-18', 'ACTIVADO');
+(1, 'P1_1', '2020-09-18', 0),
+(2, 'P1_2', '2020-09-22', 0),
+(3, 'P1_3', '2020-09-22', 0),
+(4, 'P1_4', '2020-09-22', 0),
+(5, 'P1_5', '2020-09-22', 0),
+(6, 'P1_6', '2020-09-22', 0),
+(7, 'P1_7', '2020-09-22', 0),
+(8, 'P1_8', '2020-09-22', 0),
+(9, 'P1_9', '2020-09-22', 0),
+(10, 'P1_9', '2020-09-22', 0),
+(11, 'P1_10', '2020-09-22', 0),
+(12, 'P1_11', '2020-09-22', 0),
+(13, 'P1_12', '2020-09-22', 0),
+(14, 'P2_1', '2020-09-22', 0),
+(15, 'P2_2', '2020-09-22', 0),
+(16, 'P2_3', '2020-09-22', 0),
+(17, 'P2_4', '2020-09-22', 0),
+(18, 'P2_5', '2020-09-22', 0),
+(19, 'P2_6', '2020-09-22', 0),
+(20, 'P2_7', '2020-09-22', 0),
+(21, 'P2_8', '2020-09-22', 0),
+(22, 'P2_9', '2020-09-22', 0),
+(23, 'P2_10', '2020-09-22', 0),
+(24, 'P2_10', '2020-09-22', 0),
+(25, 'P2_11', '2020-09-22', 0),
+(26, 'P2_12', '2020-09-22', 0),
+(27, 'P3_1', '2020-09-22', 0),
+(28, 'P3_2', '2020-09-22', 0),
+(29, 'P3_3', '2020-09-22', 0),
+(30, 'P3_4', '2020-09-22', 0),
+(31, 'P3_5', '2020-09-22', 0),
+(32, 'P3_6', '2020-09-22', 0),
+(33, 'P3_7', '2020-09-22', 0),
+(34, 'P3_8', '2020-09-22', 0),
+(35, 'P3_9', '2020-09-22', 0),
+(36, 'P3_10', '2020-09-22', 0),
+(37, 'P3_11', '2020-09-22', 0),
+(38, 'P3_12', '2020-09-22', 0);
 
 -- --------------------------------------------------------
 
@@ -170,13 +255,13 @@ ALTER TABLE `salas`
 -- AUTO_INCREMENT de la tabla `alarma`
 --
 ALTER TABLE `alarma`
-  MODIFY `ID_Alarma` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Alarma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `calefaccion`
 --
 ALTER TABLE `calefaccion`
-  MODIFY `ID_Calefaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Calefaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Restricciones para tablas volcadas

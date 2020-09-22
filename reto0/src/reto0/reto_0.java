@@ -87,7 +87,57 @@ public class reto_0 implements ActionListener {
 						konexioa.close();
 
 		}catch (SQLException sqle) {
+			System.out.println("error");
+		}
+	}
+	
+	public void alarmaMod(String ID_Sala, String Activado) {
+		try {
+			Connection konexioa = DriverManager.getConnection("jdbc:mysql://localhost/g2r0", "root", "");
+			Statement st = konexioa.createStatement();
+			ResultSet rse = st.executeQuery("call selectAlarma()");
+			//Llamada a la procedura del select de la alarma y recorrer todos los objetos del mismo
+			while(rse.next()){
+				//Ver si la sala modificada está insertada en la tabla
+				if (rse.getObject("ID_Sala")==ID_Sala) {
+					//Encontrar la sala y updatear el objeto
+					ResultSet rseU= st.executeQuery("Call alarmaUpdate(`"+ID_Sala+"`, `"+Activado+"`)");
+					rseU.close();	
+				}
+			}
 			
+			
+			// ResultSet itxi
+			rse.close();
+			
+			// Statement itxi kontsulta egin eta gero
+			st.close();
+			// konexioa itxi
+			konexioa.close();
+		}catch(SQLException sqle){
+			//Si la conexión falla saldrá un mensaje de error
+			System.out.println("error");
+		}
+	}
+	//Función para updatear o insertar en la tabla de calefacción
+	public void calefaccionMod (String ID_Sala, String Activado) {
+		try {
+			Connection konexioa = DriverManager.getConnection("jdbc:mysql://localhost/g2r0", "root", "");
+			Statement st = konexioa.createStatement();
+			ResultSet rse = st.executeQuery("call selectCalefaccion()");
+			//Llamada a la procedura del select de la calefacción y recorrer todos los objetos del mismo
+			while (rse.next()){
+				//Ver si la sala modificada está insertada en la tabla
+				if(rse.getObject(ID_Sala)==ID_Sala) {
+					//Si la sala ya fue modificada updatear el objeto
+					ResultSet rseU= st.executeQuery("call calefaccionUpdate(`"+ID_Sala+"`, '"+Activado+"')");
+					rseU.close();
+				}
+			}
+			
+		}catch(SQLException sqle) {
+			//Si la conexión falla saldrá un mensaje de error
+			System.out.println("error");
 		}
 	}
 	
